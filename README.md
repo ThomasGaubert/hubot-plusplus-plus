@@ -1,6 +1,8 @@
 hubot-plusplus-plus
 ===================
 
+[![Build Status](https://travis-ci.org/ThomasGaubert/hubot-plusplus-plus.svg?branch=master)](https://travis-ci.org/ThomasGaubert/hubot-plusplus-plus)
+
 Give (or take away) points from people and things, all from the comfort of your
 personal Hubot.
 
