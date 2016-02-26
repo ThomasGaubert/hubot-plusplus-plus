@@ -30,6 +30,12 @@ ScoreKeeper = require('./scorekeeper')
 module.exports = (robot) ->
   scoreKeeper = new ScoreKeeper(robot)
 
+  isInvalid = (str) ->
+    return str.indexOf("@channel") > -1 ||
+      str.indexOf("@here") > -1 ||
+      str.indexOf("@group") > -1 ||
+      str.indexOf("@everyone") > -1
+
   # sweet regex bro
   robot.hear ///
     # from beginning of line
@@ -58,11 +64,11 @@ module.exports = (robot) ->
       else
         name = (name.replace /(^\s*@)|([,:\s]*$)/g, '').trim().toLowerCase()
 
-      if name.indexOf("@channel") > -1
+      if isInvalid name
         msg.send "Invalid user"
         return
 
-    if reason && reason.indexOf("@channel") > -1
+    if reason && isInvalid reason
       msg.send "Invalid reason"
       return
 
