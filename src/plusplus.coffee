@@ -58,6 +58,14 @@ module.exports = (robot) ->
       else
         name = (name.replace /(^\s*@)|([,:\s]*$)/g, '').trim().toLowerCase()
 
+      if name.indexOf("@channel") > -1
+        msg.send "Invalid user"
+        return
+
+    if reason && reason.indexOf("@channel") > -1
+      msg.send "Invalid reason"
+      return
+
     # check whether a name was specified. use MRU if not
     unless name? && name != ''
       [name, lastReason] = scoreKeeper.last(room)
