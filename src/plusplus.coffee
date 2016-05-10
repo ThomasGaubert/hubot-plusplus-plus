@@ -162,6 +162,10 @@ module.exports = (robot) ->
                      , "")
                    else
                      "#{name} has #{score} points."
+                     
+    if isInvalid reasonString
+      msg.send "Invalid user"
+      return
 
     msg.send reasonString
 
@@ -173,7 +177,9 @@ module.exports = (robot) ->
 
     if tops.length > 0
       for i in [0..tops.length-1]
-        message.push("#{i+1}. #{tops[i].name} : #{tops[i].score}")
+        entry = "#{i+1}. #{tops[i].name} : #{tops[i].score}"
+        if !isInvalid entry
+          message.push(entry)
     else
       message.push("No scores to keep track of yet!")
 
